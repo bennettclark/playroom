@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html class="no-js" lang="en" >
 	<head>
-		<title>This is a map</title>
+		<title>Map of My Heart</title>
 		<style>
 			#map_wrapper {
 				height: 400px;
@@ -16,11 +16,12 @@
 		<div id="map_wrapper">
 			<div id="map_canvas" class="mapping"></div>
 		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript">
 	jQuery(function($) {
 		// Asynchronously Load the map API 
 		var script = document.createElement('script');
-		script.src = "//maps.googleapis.com/maps/api/js?key=AIzaSyDWMV6lEY_hJL_NZyeUtDOjL3A31w-w5YI&sensor=false&callback=initialize";
+		script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDWMV6lEY_hJL_NZyeUtDOjL3A31w-w5YI&callback=initialize";
 		document.body.appendChild(script);
 	});
 
@@ -29,7 +30,7 @@
 		var bounds = new google.maps.LatLngBounds();
 		var mapOptions = {
 			mapTypeId: 'roadmap',
-			styles: [ { "featureType": "administrative", "elementType": "geometry", "stylers": [ { "visibility": "off" } ] }, { "featureType": "administrative", "elementType": "labels", "stylers": [ { "visibility": "off" } ] }, { "featureType": "landscape", "elementType": "geometry.fill", "stylers": [ { "color": "#87958b" } ] }, { "featureType": "landscape", "elementType": "labels", "stylers": [ { "visibility": "off" } ] }, { "featureType": "poi", "elementType": "geometry", "stylers": [ { "visibility": "off" } ] }, { "featureType": "poi", "elementType": "labels", "stylers": [ { "visibility": "off" } ] }, { "featureType": "road", "elementType": "geometry", "stylers": [ { "visibility": "off" } ] }, { "featureType": "road", "elementType": "labels", "stylers": [ { "visibility": "off" } ] }, { "featureType": "transit", "elementType": "geometry", "stylers": [ { "visibility": "off" } ] }, { "featureType": "transit", "elementType": "labels", "stylers": [ { "visibility": "off" } ] }, { "featureType": "water", "elementType": "geometry", "stylers": [ { "color": "#ffffff" } ] }, { "featureType": "water", "elementType": "labels", "stylers": [ { "visibility": "off" }, { "color": "#eab5b5" } ] }]
+			styles: [ { "featureType": "administrative", "elementType": "geometry", "stylers": [ { "visibility": "off" } ] }, { "featureType": "administrative", "elementType": "labels", "stylers": [ { "visibility": "off" } ] }, { "featureType": "landscape", "elementType": "geometry.fill", "stylers": [ { "color": "#d88d22" } ] }, { "featureType": "landscape", "elementType": "labels", "stylers": [ { "visibility": "off" } ] }, { "featureType": "poi", "elementType": "geometry", "stylers": [ { "visibility": "off" } ] }, { "featureType": "poi", "elementType": "labels", "stylers": [ { "visibility": "off" } ] }, { "featureType": "road", "elementType": "geometry", "stylers": [ { "visibility": "off" } ] }, { "featureType": "road", "elementType": "labels", "stylers": [ { "visibility": "off" } ] }, { "featureType": "transit", "elementType": "geometry", "stylers": [ { "visibility": "off" } ] }, { "featureType": "transit", "elementType": "labels", "stylers": [ { "visibility": "off" } ] }, { "featureType": "water", "elementType": "geometry", "stylers": [ { "color": "#ffffff" } ] }, { "featureType": "water", "elementType": "labels", "stylers": [ { "visibility": "off" }, { "color": "#eab5b5" } ] }]
 		};
 						
 		// Display a map on the page
@@ -38,18 +39,49 @@
 
 		var markers = [
 			['Seattle', 47.6147628,-122.4759901],
-			['LA', 34.0201812,-118.6919262]
+			['LA', 34.0201812,-118.6919262],
+			['Tokyo', 35.6732619,139.570302],
+			['London', 51.528308,-0.3817808],
+			['Paris', 48.8588377,2.277517],
+			['Naples', 40.8539645,14.1765621],
+			['Singapore', 1.3147268,103.7069306],
+			['Montreal', 45.557956,-73.85199]
 		];
 
 		// Info Window Content
 		var infoWindowContent = [
 			['<div class="info_content">' +
-			'<h3>Seattle</h3>' +
-			'<p>Seattle text.</p>' +        '</div>'],
+				'<h3>Seattle</h3>' +
+				'<p>Seattle is where I live currently.</p>' +
+				'</div>'],
 			['<div class="info_content">' +
-			'<h3>Los Angeles</h3>' +
-			'<p>Los Angeles text.</p>' +
-			'</div>']
+				'<h3>Los Angeles</h3>' +
+				'<p>I don\'t like LA much, but I go there to visit friends.</p>' +
+				'</div>'],
+			['<div class="info_content">' +
+				'<h3>Tokyo</h3>' +
+				'<p>I lived in Tokyo for a year for study abroad, then lived in the nearby town of Yokosuka for another year or so.</p>' +
+				'</div>'],
+			['<div class="info_content">' +
+				'<h3>London</h3>' +
+				'<p>I traveled to London on Christmas break of 5th grade, with my parents.</p>' +
+				'</div>'],
+			['<div class="info_content">' +
+				'<h3>Paris</h3>' +
+				'<p>I traveled to Paris on summer break between high school and college, with my parents.</p>' +
+				'</div>'],
+			['<div class="info_content">' +
+				'<h3>Naples</h3>' +
+				'<p>I traveled to Naples when I was in first grade, with my parents.</p>' +
+				'</div>'],
+			['<div class="info_content">' +
+				'<h3>Singapore</h3>' +
+				'<p>I was born in Singapore, but moved away when I was a baby. I traveled there to see it when I was 20 years old.</p>' +
+				'</div>'],
+			['<div class="info_content">' +
+				'<h3>Montreal</h3>' +
+				'<p>I have been to Montreal twice to visit a good friend from study abroad.</p>' +
+				'</div>']
 		];
 			
 		// Display multiple markers on a map
@@ -62,7 +94,7 @@
 			marker = new google.maps.Marker({
 				position: position,
 				map: map,
-				icon: '/graphics/markers/leaf-marker.png',
+				icon: 'graphics/map-markers/purple-heart.png',
 				title: markers[i][0]
 			});
 			
